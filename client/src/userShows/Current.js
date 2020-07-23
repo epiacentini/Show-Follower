@@ -88,6 +88,7 @@ const Current = ({ profile, removeCurrent }) => {
             </div>
           </div>
         )}
+        {slides}
         <Slider
           arrows={true}
           dots={true}

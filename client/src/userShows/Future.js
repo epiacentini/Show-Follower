@@ -59,6 +59,33 @@ const Future = ({ profile, removeFuture }) => {
     setAutoPlay(!autoPlay);
   };
 
+  var settings = {
+    dots: true,
+    slidesToShow: slides > 2 ? 3 : slides,
+    slidesToScroll: slides > 2 ? 3 : 1,
+    autoplay: autoPlay,
+    autoplaySpeed: 3000,
+    infinite: false,
+    centerMode: true,
+    responsive: [
+      {
+        breakpoint: 1575,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 1075,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <Fragment>
       <div className="current-car">
@@ -79,6 +106,7 @@ const Future = ({ profile, removeFuture }) => {
                 onClick={() => {
                   removeFuture(imdbID);
                   setisOpen(!isOpen);
+                  window.location.reload(false);
                 }}
               >
                 Remove From List
@@ -89,18 +117,12 @@ const Future = ({ profile, removeFuture }) => {
             </div>
           </div>
         )}
-
-        <Slider
-          dots={true}
-          slidesToShow={slides > 2 ? 3 : slides}
-          slidesToScroll={slides > 2 ? 3 : 1}
-          autoplay={autoPlay}
-          autoplaySpeed={3000}
-        >
+        {slides}
+        <Slider {...settings}>
           {titles.map((title) => (
             <div
               className={
-                slides === 1 ? 'sld-small' : slides === 2 ? 'sld-small' : 'sld'
+                slides === 1 ? 'sld-small' : slides === 2 ? 'sld-med' : 'sld'
               }
             >
               <img src={title.Poster} alt="" />

@@ -38,6 +38,7 @@ const Landing = (props) => {
   const [selectedTab, setSelectedTab] = useState(indexToTabName[page]);
   const [filter, setFilter] = useState('How to');
   const [query, setQuery] = useState('How to');
+  const [label, setLabel] = useState('Search shows and movies!');
 
   const handleChange = (event, newValue) => {
     history.push(`/dash/${tabNameToIndex[newValue]}`);
@@ -67,6 +68,11 @@ const Landing = (props) => {
       marginBottom: '-5px',
       marginLeft: '-350px',
       marginRight: '80px',
+      ['@media (max-width:700px)']: {
+        // eslint-disable-line no-useless-computed-key
+        marginLeft: '-390px',
+        marginRight: '45px',
+      },
     },
     searchIcon: {
       alignSelf: 'flex-end',
@@ -75,6 +81,14 @@ const Landing = (props) => {
     searchInput: {
       width: '300px',
       margin: '5px',
+      ['@media (max-width:840px)']: {
+        // eslint-disable-line no-useless-computed-key
+        width: '200px',
+      },
+      ['@media (max-width:700px)']: {
+        // eslint-disable-line no-useless-computed-key
+        width: '200px',
+      },
     },
   }));
 
@@ -181,31 +195,58 @@ const Landing = (props) => {
                 }}
                 onChange={handleSearchChange}
                 className={classes.searchInput}
-                label="Search any show or movie!"
+                label={label}
                 variant="standard"
               />
             </div>
           )}
-          <Tabs
-            value={selectedTab}
-            onChange={handleChange}
-            centered
-            indicatorColor="secondary"
-            textColor="secondary"
-          >
-            <Tab
-              icon={<i className="fas fa-search fa-2x"></i>}
-              label="Search"
-            />
-            <Tab
-              icon={<i className="far fa-heart fa-2x"></i>}
-              label="Current Shows"
-            />
-            <Tab
-              icon={<i className="fas fa-bookmark fa-2x"></i>}
-              label="Future Interests"
-            />
-          </Tabs>
+          {selectedTab !== 0 ? (
+            <div className="tabs">
+              <Tabs
+                value={selectedTab}
+                scrollButtons="auto"
+                variant="scrollable"
+                onChange={handleChange}
+                indicatorColor="secondary"
+                textColor="secondary"
+              >
+                <Tab
+                  icon={<i className="fas fa-search fa-2x"></i>}
+                  label="Search"
+                />
+                <Tab
+                  icon={<i className="far fa-heart fa-2x"></i>}
+                  label="Current Shows"
+                />
+                <Tab
+                  icon={<i className="fas fa-bookmark fa-2x"></i>}
+                  label="Future Interests"
+                />
+              </Tabs>
+            </div>
+          ) : (
+            <Tabs
+              value={selectedTab}
+              scrollButtons="auto"
+              variant="scrollable"
+              onChange={handleChange}
+              indicatorColor="secondary"
+              textColor="secondary"
+            >
+              <Tab
+                icon={<i className="fas fa-search fa-2x"></i>}
+                label="Search"
+              />
+              <Tab
+                icon={<i className="far fa-heart fa-2x"></i>}
+                label="Current Shows"
+              />
+              <Tab
+                icon={<i className="fas fa-bookmark fa-2x"></i>}
+                label="Future Interests"
+              />
+            </Tabs>
+          )}
         </Toolbar>
       </AppBar>
       {selectedTab === 0 && <Home userQuery={query} />}
