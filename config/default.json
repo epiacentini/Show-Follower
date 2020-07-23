@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Eric:Mumfordjimi1@cluster0-wrecv.mongodb.net/showFollower?retryWrites=true&w=majority",
+  "JWTSecret": "secret"
+}
