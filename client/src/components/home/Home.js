@@ -20,10 +20,16 @@ const Home = ({
   const [titles, setTitles] = useState([]);
   const [names, setNames] = useState('');
   const [error, setErrors] = useState('');
+  let profileRefresh = 0;
 
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [profileRefresh]);
+
+  if (profile == null) {
+    createProfile();
+    profileRefresh = 1;
+  }
 
   useEffect(() => {
     getTitles();
@@ -53,72 +59,24 @@ const Home = ({
     setSearch('');
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    createProfile(names);
-  };
-
   Modal.setAppElement('#root');
 
   return (
     <Fragment>
-      {profile === null ? (
-        <div className="modal">
-          <Modal
-            isOpen={true}
-            style={{
-              overlay: {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: '#43464b',
-              },
-              content: {
-                position: 'absolute',
-                top: '35%',
-                left: '35%',
-                right: '35%',
-                bottom: '40%',
-                padding: '15px',
-                textAlign: 'center',
-                border: '3px solid black',
-              },
-            }}
-          >
-            <h2>Enter the names of all users</h2>
-            <h5>Please separate entries with commas</h5>
-            <form onSubmit={(e) => onSubmit(e)}>
-              <input
-                type="text"
-                name="name"
-                value={names}
-                onChange={(e) => setNames(e.target.value)}
-                required
-              />
-              <br></br>
-              <br></br>
-              <input type="submit" value="submit" />
-            </form>
-          </Modal>
+      <div className="container">
+        {error && <h3 className="alert">{error}</h3>}
+        <div className="titles">
+          {titles.map((title) => (
+            <ResultItem
+              key={title.imdbIdD}
+              title={title.Title}
+              poster={title.Poster}
+              year={title.Year}
+              showID={title.imdbID}
+            />
+          ))}
         </div>
-      ) : (
-        <div className="container">
-          {error && <h3 className="alert">{error}</h3>}
-          <div className="titles">
-            {titles.map((title) => (
-              <ResultItem
-                key={title.imdbIdD}
-                title={title.Title}
-                poster={title.Poster}
-                year={title.Year}
-                showID={title.imdbID}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
     </Fragment>
   );
 };
@@ -135,6 +93,7 @@ const mapStateToProps = (state) => ({
   currentUsers: state.currentUsers,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, createProfile })(
-  Home
-);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  createProfile,
+})(Home);

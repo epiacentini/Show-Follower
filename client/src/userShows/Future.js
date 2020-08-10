@@ -117,7 +117,6 @@ const Future = ({ profile, removeFuture }) => {
             </div>
           </div>
         )}
-        {slides}
         <Slider {...settings}>
           {titles.map((title) => (
             <div

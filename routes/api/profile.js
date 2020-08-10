@@ -10,7 +10,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id,
-    }).populate('user', 'profUser');
+    }).populate('user');
 
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
@@ -26,21 +26,15 @@ router.get('/me', auth, async (req, res) => {
 //@desc Create  user profile
 // @access private
 router.post('/', auth, async (req, res) => {
-  const { names } = req.body;
   const profileFields = {};
   profileFields.user = req.user.id;
-  profileFields.profUser = names.split(',').map((name) => name.trim());
 
   try {
-    /* let profile = await Profile.findOne({ user: req.user.id });
-
-    if (profile) {
-      return res.json(profile);
-    }*/
     let profile = new Profile(profileFields);
     await profile.save();
     res.json(profile);
   } catch (err) {
+    console.log('error');
     console.error(err.message);
     res.status(500).send('Server Error');
   }

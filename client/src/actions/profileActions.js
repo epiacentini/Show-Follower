@@ -17,9 +17,9 @@ export const getCurrentProfile = () => async (dispatch, getState) => {
   }
 };
 
-export const createProfile = (names) => async (dispatch, getState) => {
+export const createProfile = () => async (dispatch, getState) => {
   try {
-    const body = JSON.stringify({ names });
+    const body = {};
     const res = await axios.post('/api/profile', body, tokenConfig(getState));
     dispatch({
       type: GET_PROFILE,
