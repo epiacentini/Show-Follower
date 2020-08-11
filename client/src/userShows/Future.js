@@ -86,6 +86,17 @@ const Future = ({ profile, removeFuture }) => {
     ],
   };
 
+  if (slides == 0)
+    return (
+      <div className="empty">
+        <i class="fas fa-exclamation-triangle fa-9x"></i>
+        <h1>
+          You currently have 0 Entries!<br></br>
+          <br></br>Add one to interests to get started.
+        </h1>
+      </div>
+    );
+
   return (
     <Fragment>
       <div className="current-car">

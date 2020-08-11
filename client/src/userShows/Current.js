@@ -57,71 +57,81 @@ const Current = ({ profile, removeCurrent }) => {
     setisOpen(!isOpen);
     setAutoPlay(!autoPlay);
   };
-
-  return (
-    <Fragment>
-      <div className="current-car">
-        {isOpen && (
-          <div class="bg-modal">
-            <div class="modal-contents">
-              <h2>{currTitle}</h2>
-              <br></br>
-              <h3 className="plot">{currPlot}</h3>
-              <br></br>
-              <h3>Rating: {currRating}</h3>
-              <br></br>
-              <h3>
-                You Started Watching On:{' '}
-                <Moment format="MM/DD/YYYY">{following[imdbID]}</Moment>
-              </h3>
-              <button
-                onClick={() => {
-                  removeCurrent(imdbID);
-                  setisOpen(!isOpen);
-                }}
-              >
-                Remove From List
-              </button>
-              <div class="close" onClick={() => setisOpen(!isOpen)}>
-                +
+  if (slides == 0)
+    return (
+      <div className="empty">
+        <i class="fas fa-exclamation-triangle fa-9x"></i>
+        <h1>
+          You currently have 0 Entries!<br></br>
+          <br></br>Add one to interests to get started.
+        </h1>
+      </div>
+    );
+  else
+    return (
+      <Fragment>
+        <div className="current-car">
+          {isOpen && (
+            <div class="bg-modal">
+              <div class="modal-contents">
+                <h2>{currTitle}</h2>
+                <br></br>
+                <h3 className="plot">{currPlot}</h3>
+                <br></br>
+                <h3>Rating: {currRating}</h3>
+                <br></br>
+                <h3>
+                  You Started Watching On:{' '}
+                  <Moment format="MM/DD/YYYY">{following[imdbID]}</Moment>
+                </h3>
+                <button
+                  onClick={() => {
+                    removeCurrent(imdbID);
+                    setisOpen(!isOpen);
+                  }}
+                >
+                  Remove From List
+                </button>
+                <div class="close" onClick={() => setisOpen(!isOpen)}>
+                  +
+                </div>
               </div>
             </div>
-          </div>
-        )}
-        <Slider
-          arrows={true}
-          dots={true}
-          slidesToShow={slides > 2 ? 3 : slides}
-          slidesToScroll={slides > 2 ? 3 : 1}
-          autoplay={autoPlay}
-          autoplaySpeed={3000}
-        >
-          {titles.map((title) => (
-            <div
-              className={
-                slides === 1 ? 'sld-small' : slides === 2 ? 'sld-med' : 'sld'
-              }
-            >
-              <img src={title.Poster} alt="" />
+          )}
+          <Slider
+            arrows={true}
+            dots={true}
+            slidesToShow={slides > 2 ? 3 : slides}
+            slidesToScroll={slides > 2 ? 3 : 1}
+            autoplay={autoPlay}
+            autoplaySpeed={3000}
+          >
+            {titles.map((title) => (
               <div
-                className="rd-more"
-                onClick={() =>
-                  handleModal(
-                    title.Title,
-                    title.Plot,
-                    title.Rated,
-                    title.imdbID
-                  )
+                className={
+                  slides === 1 ? 'sld-small' : slides === 2 ? 'sld-med' : 'sld'
                 }
               >
-                <i className=" info fas fa-info-circle fa-lg"></i>
+                <img src={title.Poster} alt="" />
+                <div
+                  className="rd-more"
+                  onClick={() =>
+                    handleModal(
+                      title.Title,
+                      title.Plot,
+                      title.Rated,
+                      title.imdbID
+                    )
+                  }
+                >
+                  <i className=" info fas fa-info-circle fa-lg"></i>
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </Fragment>
-  );
+            ))}
+          </Slider>
+        </div>
+      </Fragment>
+    );
 };
 
 Current.propTypes = {

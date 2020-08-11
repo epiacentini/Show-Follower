@@ -58,12 +58,12 @@ const Login = ({ login, isAuthenticated, error }) => {
               type="submit"
               name=""
               value="Login"
-              className="btn btn-white btn-animation-1"
+              className="btn btn-white"
             />
             <br></br>
-            <div className="btn btn-white btn-animation-1">
-              <Link to="/">Register Page</Link>
-            </div>
+            <button className="btn btn-white">
+              <Link to="/">Register</Link>
+            </button>
           </section>
         </form>
       </div>

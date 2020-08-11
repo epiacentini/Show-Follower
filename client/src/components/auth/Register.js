@@ -74,9 +74,9 @@ const Register = ({ isAuthenticated, register, error }) => {
               className="btn btn-white btn-animation-1"
             />
             <br></br>
-            <div className="btn btn-white btn-animation-1">
-              <Link to="/login">Login Page</Link>
-            </div>
+            <button className="btn btn-white btn-animation-1">
+              <Link to="/login">Login</Link>
+            </button>
           </section>
         </form>
       </div>

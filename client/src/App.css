@@ -468,11 +468,38 @@ body {
   .settings-div {
     padding-right: 400px;
   }
+  .btn {
+    font-size: small;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    top: 0;
+    left: 0;
+    padding: 6px 4px;
+    border-radius: 25px;
+    transition: all 0.5s;
+    margin-right: 1px;
+    border: 1px solid grey;
+  }
 }
 
-@media only screen and (max-width: 1150px) {
+@media only screen and (min-width: 941px) and (max-width: 1150px) {
   .tabs {
     margin-left: -300px;
+  }
+  .btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    display: flex;
+    top: 0;
+    left: 0;
+    padding: 6px 12px;
+    border-radius: 25px;
+    transition: all 0.5s;
+    margin-right: 10px;
+    border: 1px solid grey;
   }
 }
 
@@ -508,4 +535,36 @@ body {
     margin: 10px 30px;
     transition: 0.75s ease;
   }
+}
+
+.empty {
+  margin: auto;
+  margin-top: 50px;
+  display: block;
+  text-align: center;
+  width: 50%;
+  font-size: x-large;
+}
+
+.fa-exclamation-triangle {
+  padding-bottom: 30px;
+  color: red;
+  transition: 1.5s;
+  -webkit-transition: 1.5s;
+  -moz-transition: 1.5s;
+  -ms-transition: 1.5s;
+  -o-transition: 1.5s;
+}
+
+.fa-exclamation-triangle:hover {
+  transition: 1.5s;
+  -webkit-transition: 1.5s;
+  -moz-transition: 1.5s;
+  -ms-transition: 1.5s;
+  -o-transition: 1.5s;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
