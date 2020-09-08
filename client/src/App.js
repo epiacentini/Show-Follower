@@ -24,10 +24,10 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Route exact path="/" component={Register} />
+        <Route exact path="/" component={Login} />
         <section>
           <Switch>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             <PrivateRoute
               exact
               path="/dash/:page?"

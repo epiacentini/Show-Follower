@@ -74,10 +74,14 @@ const Register = ({ isAuthenticated, register, error }) => {
               className="btn btn-white btn-animation-1"
             />
             <br></br>
-            <button className="btn btn-white btn-animation-1">
-              <Link to="/login">Login</Link>
-            </button>
           </section>
+          <div className="sgn-up-text">
+            Already have an account?
+            <Link to="/" className="sgn-up-reg">
+              {' '}
+              Login
+            </Link>
+          </div>
         </form>
       </div>
     </div>

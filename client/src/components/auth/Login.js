@@ -28,7 +28,7 @@ const Login = ({ login, isAuthenticated, error }) => {
   return (
     <div className="reg-wrapper">
       <div className="box-container">
-        <h1>Login</h1>
+        <h1>LOGIN</h1>
         {error.id === 'LOGIN_FAIL' ? (
           <div className="alert">{error.msg.errors[0].msg}</div>
         ) : null}
@@ -54,17 +54,23 @@ const Login = ({ login, isAuthenticated, error }) => {
             />
           </div>
           <section className="btns">
-            <input
+            <button
               type="submit"
               name=""
               value="Login"
               className="btn btn-white"
-            />
-            <br></br>
-            <button className="btn btn-white">
-              <Link to="/">Register</Link>
+            >
+              LOGIN
             </button>
+            <br></br>
           </section>
+          <div className="sgn-up-text">
+            Don't have an account?
+            <Link to="/register" className="sgn-up-reg">
+              {' '}
+              Register Now
+            </Link>
+          </div>
         </form>
       </div>
     </div>
