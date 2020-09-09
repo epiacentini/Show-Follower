@@ -28,7 +28,7 @@ const Current = ({ profile, removeCurrent }) => {
     loading = true;
     profile.profile.current.forEach(async (show) => {
       const res = await fetch(
-        `http://www.omdbapi.com/?${type}=${show.showId}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?${type}=${show.showId}&apikey=${API_KEY}`
       );
       data = await res.json();
       setFollowing((following) => ({

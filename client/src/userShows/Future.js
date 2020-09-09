@@ -28,7 +28,7 @@ const Future = ({ profile, removeFuture }) => {
     loading = true;
     profile.profile.future.forEach(async (show) => {
       const res = await fetch(
-        `http://www.omdbapi.com/?${type}=${show.fshowId}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?${type}=${show.fshowId}&apikey=${API_KEY}`
       );
       data = await res.json();
       console.log(data);

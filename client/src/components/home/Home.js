@@ -37,7 +37,7 @@ const Home = ({
 
   const getTitles = async () => {
     const res = await fetch(
-      `http://www.omdbapi.com/?${type}=${userQuery}&apikey=${API_KEY}&page=1`
+      `https://www.omdbapi.com/?${type}=${userQuery}&apikey=${API_KEY}&page=1`
     );
 
     const data = await res.json();
