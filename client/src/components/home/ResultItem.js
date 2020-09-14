@@ -17,7 +17,7 @@ const ResultItem = ({
         {' '}
         {poster !== null && <img className="poster" src={poster} />}
       </div>
-      <h2>{title}</h2>
+      <h2 className="pstTitle">{title}</h2>
       <div className="card-stats">
         <div className="stat">
           <div className="value">
@@ -30,7 +30,7 @@ const ResultItem = ({
         <div className="stat">
           <div className="value">
             <button onClick={() => addToFuture(showID)}>
-              <span>Future?</span>
+              <span>Watch Later?</span>
             </button>
           </div>
         </div>
